@@ -30,6 +30,21 @@ class AuthController extends Controller
     }
     public function signIn(Request $request)
     {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string'
+        ]);
+
+        if (!$token = Auth::guard('api')->attempt($credentials)) {
+            return response()->json([
+                'message' => 'Invalid credentials'
+            ], 401);
+        }
+
+        return response()->json([
+            'message' => 'Login successful',
+            'token' => $token
+        ]);
 
     }
 
