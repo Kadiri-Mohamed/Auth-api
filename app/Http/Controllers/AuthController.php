@@ -50,6 +50,10 @@ class AuthController extends Controller
 
     public function signOut()
     {
+        Auth::guard('api')->logout();
 
+        return response()->json([
+            'message' => 'Logout successful'
+        ]);
     }
 }
