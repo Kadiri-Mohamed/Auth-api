@@ -14,6 +14,7 @@ Route::middleware('auth:api')->group(function () {
     Route::put('updateProfile', [ProfileController::class, 'updateProfile']);
     Route::get('showProfile', [ProfileController::class, 'showProfile']);
     Route::put('updatePassword', [ProfileController::class, 'updatePassword']);
+    Route::delete('deleteProfile', [ProfileController::class, 'deleteProfile']);
 
 });
 

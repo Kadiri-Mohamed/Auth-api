@@ -46,7 +46,7 @@ class ProfileController extends Controller
             'message' => 'Password updated successfully'
         ], 200);
     }
-    public function deleteAccount(Request $request)
+    public function deleteProfile(Request $request)
     {
         $user = auth('api')->user();
 
