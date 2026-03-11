@@ -1,0 +1,221 @@
+{
+  "info": {
+    "_postman_id": "0a634d97-43a5-4fd9-a69e-d6944db52691",
+    "name": "Auth",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "50192275"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Sign In",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let jsonData = pm.response.json();\r",
+                  "\r",
+                  "let token = null;\r",
+                  "\r",
+                  "if (jsonData.token) {\r",
+                  "    token = jsonData.token;\r",
+                  "}\r",
+                  "\r",
+                  "if(token) {\r",
+                  "    pm.environment.set(\"token\", token);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3NpZ25JbiIsImlhdCI6MTc3MzE0OTcwMiwiZXhwIjoxNzczMTUzMzAyLCJuYmYiOjE3NzMxNDk3MDIsImp0aSI6ImJzYUlsUUtYbGFMRXVMclUiLCJzdWIiOiIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.sqLc8xL7dyqulcF4HggIhknzc_yuwQ82xDq_OIv0zz8",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"kad@adasd.com\",\r\n    \"password\": \"password123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url }}/signIn",
+              "host": [
+                "{{url }}"
+              ],
+              "path": [
+                "signIn"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Sign up",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"kadiri\",\r\n    \"email\": \"kad@adasd.com\",\r\n    \"password\": \"password123\",\r\n    \"password_confirmation\": \"password123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url }}/signUp",
+              "host": [
+                "{{url }}"
+              ],
+              "path": [
+                "signUp"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Sign out",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{url }}/signOut",
+              "host": [
+                "{{url }}"
+              ],
+              "path": [
+                "signOut"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Profile",
+      "item": [
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\" : \"kadiri Mohamed\",\r\n    \"email\": \"kadiri@gmail.com\"  \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url }}/updateProfile",
+              "host": [
+                "{{url }}"
+              ],
+              "path": [
+                "updateProfile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Show Profile",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{url }}/showProfile",
+              "host": [
+                "{{url }}"
+              ],
+              "path": [
+                "showProfile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update password",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\" : \"kadiri Mohamed\",\r\n    \"email\": \"kadiri@gmail.com\"  \r\n}"
+            },
+            "url": {
+              "raw": "{{url }}/updatePassword",
+              "host": [
+                "{{url }}"
+              ],
+              "path": [
+                "updatePassword"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Profile",
+          "request": {
+            "method": "DELETE",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
